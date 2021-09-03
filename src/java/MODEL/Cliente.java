@@ -1,12 +1,13 @@
 package MODEL;
 
 public class Cliente {
+    //Criar atributos do cliente
     private int id;
     private String nome;
     private String email;
 
-    
-    //botaão direito e clicar em inserir codigo e get e set
+    //Criar os metodos do clientes, para comunicação 
+    //botão direito -> clicar em inserir codigo -> getters e setters
     public int getId() {
         return id;
     }

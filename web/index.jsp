@@ -6,7 +6,9 @@
         <title>JSP Page</title>
     </head>
     <body>
+        <!-- Usando método post mandando para outra página para encapsular os dados-->
         <form method="post" action="executar_inserir.jsp">
+            <!-- Criação de formulario para pegar os dados -->
             <h1>Cadastro de Cliente</h1>
             <label>NOME</label><br>
             <input type="text" name="nome" required/><br>
