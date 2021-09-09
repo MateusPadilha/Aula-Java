@@ -14,7 +14,9 @@
             <input type="text" name="nome" required/><br>
             <label>EMAIL</labe><br>
             <input type="text" name="email" required/><br><br>
-            <input type="submit" value="ENVIAR"/>
+            <input type="submit" value="ENVIAR"/><br><br>
         </form>
+        
+        <a href="consultar_clientes.jsp">Formulário</a>
     </body>
 </html>
