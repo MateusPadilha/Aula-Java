@@ -31,8 +31,12 @@
                     out.print("<td>"+lista.get(i).getId()+"</td>/");
                     out.print("<td>"+lista.get(i).getNome()+"</td>/");
                     out.print("<td>"+lista.get(i).getEmail()+"</td>/");
-                    out.print("<td>EDITAR</td>/");
-                    out.print("<td>EXCLUIR</td>/");
+                    out.print("<td><a href='alterar_cliente.jsp?id="
+                            +lista.get(i).getId()
+                            +"&nome="+lista.get(i).getNome()
+                            +"&email="+lista.get(i).getEmail()
+                            +"'>EDITAR</a></td>/");
+                    out.print("<td><a href='executar_excluir.jsp'>EXCLUIR</a></td>/");
                 out.print("</tr>");
                 }
             out.print("</table>");

@@ -55,6 +55,7 @@ public class DAOCliente {
                 
     }
     
+    //Para trazer a lista do banco de dados de todos os clientes
     public ArrayList<Cliente> listarClientes(){
         //criar variavel para receber intrução SQL
         String sql = "SELECT * FROM tb_clientes";
@@ -83,6 +84,51 @@ public class DAOCliente {
         }
         return lista;
         
+    }
+    
+    //Método para atualizar os dados do clientes
+    public void atualizarCliente(Cliente cliente){
+        //try para verificação de erros
+        try{
+            String sql = "UPDATE tb_clientes SET nome = ?, email = ? WHERE id = ?";
+            //passar os valores para o preparedStatement e a conexão
+            stmt = conn.prepareStatement(sql);
+            //Passar os valores dos parâmetros
+            stmt.setString(1, cliente.getNome());
+            stmt.setString(2, cliente.getEmail());
+            stmt.setInt(3, cliente.getId());
+            //Execute instrução
+            stmt.execute();
+            //Fechar conexão
+            stmt.close();
+            
+        }catch(Exception erro){
+            //Casso tenha erro no try, vai aparecer mensagem abaixo
+            throw new RuntimeException("Erro método Atualizar Cliente",erro); 
+            
+        }
+        
+    }
+    
+    //método para excluir Cliente, criando uma variável valor para pegar o valor do id no jsp
+    public void excluirCliente(int valor){
+    
+        try{
+            //Criar variável para receber conexão sql
+            String sql = "DELETE FROM tb_clientes WHERE id = "+valor;
+            //Passa conexão para o statement
+            st = conn.createStatement();
+            //Executar a instrução sql no banco
+            st.execute(sql);
+            //Fechar a conexão com o banco
+            st.close();
+            
+        }catch(Exception erro){
+            //casssso de erro no try
+            throw new RuntimeException("Erro método Excluir Cliente", erro);
+            
+        }
+    
     }
     
 }
