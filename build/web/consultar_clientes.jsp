@@ -11,9 +11,15 @@
         <title>JSP Page</title>
     </head>
     <body>
-            
-        <h1>Consulta Clientes</h1>
         
+         <h1>Consulta Clientes</h1>
+        <form action="consultar_clientes.jsp" method="post">
+            
+            <label>Pesquisa por Nome</label>
+            <input type="text" name="nome"/>
+            <input type="submit" value="Pesquisar"/><br>
+            
+        </form> 
         <%
             out.print("<table border='1'>");
             out.print("<tr>");
@@ -25,19 +31,44 @@
             out.print("</tr>");
             
             DAOCliente cli = new DAOCliente();
-            ArrayList<Cliente> lista = cli.listarClientes();
-            for(int i=0; i<lista.size();i++){
-                out.print("<tr>");
-                    out.print("<td>"+lista.get(i).getId()+"</td>/");
-                    out.print("<td>"+lista.get(i).getNome()+"</td>/");
-                    out.print("<td>"+lista.get(i).getEmail()+"</td>/");
-                    out.print("<td><a href='alterar_cliente.jsp?id="
-                            +lista.get(i).getId()
-                            +"&nome="+lista.get(i).getNome()
-                            +"&email="+lista.get(i).getEmail()
-                            +"'>EDITAR</a></td>/");
-                    out.print("<td><a href='executar_excluir.jsp'>EXCLUIR</a></td>/");
-                out.print("</tr>");
+            if(request.getParameter("nome") == "" || request.getParameter("nome") == null){
+                ArrayList<Cliente> lista = cli.listarClientes();
+                for(int i=0; i<lista.size();i++){
+                    out.print("<tr>");
+                        out.print("<td>"+lista.get(i).getId()+"</td>/");
+                        out.print("<td>"+lista.get(i).getNome()+"</td>/");
+                        out.print("<td>"+lista.get(i).getEmail()+"</td>/");
+                        out.print("<td><a href='alterar_cliente.jsp?id="
+                                +lista.get(i).getId()
+                                +"&nome="+lista.get(i).getNome()
+                                +"&email="+lista.get(i).getEmail()
+                                +"'>EDITAR</a></td>/");
+                        out.print("<td><a href='excluir_cliente.jsp?id="
+                                +lista.get(i).getId()
+                                +"&nome="+lista.get(i).getNome()
+                                +"'>EXCLUIR</a></td>/");
+                    out.print("</tr>");
+                    }
+                }else{
+                    //Aqui vai ser código de busca por nome, copia de cima
+                    ArrayList<Cliente> lista = cli.listarClientesNome(request.getParameter("nome"));
+                    for(int i=0; i<lista.size();i++){
+                        out.print("<tr>");
+                            out.print("<td>"+lista.get(i).getId()+"</td>/");
+                            out.print("<td>"+lista.get(i).getNome()+"</td>/");
+                            out.print("<td>"+lista.get(i).getEmail()+"</td>/");
+                            out.print("<td><a href='alterar_cliente.jsp?id="
+                                    +lista.get(i).getId()
+                                    +"&nome="+lista.get(i).getNome()
+                                    +"&email="+lista.get(i).getEmail()
+                                    +"'>EDITAR</a></td>/");
+                            out.print("<td><a href='excluir_cliente.jsp?id="
+                                    +lista.get(i).getId()
+                                    +"&nome="+lista.get(i).getNome()
+                                    +"'>EXCLUIR</a></td>/");
+                        out.print("</tr>");
+                        }
+            
                 }
             out.print("</table>");
                 

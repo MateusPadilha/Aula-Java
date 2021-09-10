@@ -86,6 +86,37 @@ public class DAOCliente {
         
     }
     
+    //Criar o método para buscar cliente pelo nome
+    public ArrayList<Cliente> listarClientesNome(String valor){
+        //criar variavel para receber intrução SQL
+        String sql = "SELECT * FROM tb_clientes WHERE nome like '%"+valor+"%'";
+        
+        //Try para fazer a verificação de erros
+        try{
+            //criando conexão
+            st = conn.createStatement();
+            //executando uma query na conexão 
+            rs = st.executeQuery(sql);
+            //criar uma estrutura de repetição para carregar linha por linha no array e gravar as linhas no array
+            while(rs.next()){
+                Cliente cliente = new Cliente();
+                //pegando os valores 
+                cliente.setId(rs.getInt("id"));
+                cliente.setNome(rs.getString("nome"));
+                cliente.setEmail(rs.getString("email"));
+                //adicionando o valor no array
+                lista.add(cliente);
+            }
+            
+        }catch(Exception erro){
+            //Se ocorrer erro no código exibir mensagem abaixo
+            throw new RuntimeException("Erro no listar clientes: ",erro);
+            
+        }
+        return lista;
+        
+    }
+    
     //Método para atualizar os dados do clientes
     public void atualizarCliente(Cliente cliente){
         //try para verificação de erros
@@ -124,7 +155,7 @@ public class DAOCliente {
             st.close();
             
         }catch(Exception erro){
-            //casssso de erro no try
+            //caso de erro no try
             throw new RuntimeException("Erro método Excluir Cliente", erro);
             
         }

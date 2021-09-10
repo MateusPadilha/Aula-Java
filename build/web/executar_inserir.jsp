@@ -31,7 +31,8 @@
                     cli.setEmail(email);
                     //chamando o inserirCliente da DAO -> Cliente
                     cld.InserirCliente(cli);
-                    response.sendRedirect("index.jsp");
+                    out.print("Cliente inserido!");
+                    out.print("<meta http-equiv='refresh' content='3, url=index.jsp'>");
                 }
                 
             }catch(Exception erro){

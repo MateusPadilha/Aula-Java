@@ -16,7 +16,8 @@
         //Passando para o metodo
         cld.atualizarCliente(cli);
         //Voltar para página
-        response.sendRedirect("consultar_clientes.jsp");
+        out.print("Alterado com sucesso!");
+        out.print("<meta http-equiv='refresh' content='3, url=consultar_clientes.jsp'>");
         
     }catch(Exception erro){
     

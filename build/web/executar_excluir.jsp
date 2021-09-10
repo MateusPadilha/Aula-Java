@@ -8,7 +8,9 @@
         DAOCliente cld = new DAOCliente();
         //Passando o valor de Id que vem do formulário
         cld.excluirCliente(Integer.parseInt(request.getParameter("id")));
-        
+        //response.sendRedirect("consultar_clientes.jsp");
+        out.print("Cliente excluido!");
+        out.print("<meta http-equiv='refresh' content='3, url=consultar_clientes.jsp'>");
         
     }catch(Exception erro){
     
